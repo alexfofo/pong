@@ -1,15 +1,30 @@
 'use strict';
 
-function Entity(id, type, position, size) {
-    this.id = id;
+var Vector = require('./Vector');
+
+function Entity(type, options) {
+    options = options || {};
+
+    this.id = options.id || '';
     this.type = type;
-    this.position = position;
-    this.size = size;
+    this.position = options.position || new Vector();
+    this.size = options.size  || new Vector();
+    this.direction = options.direction || new Vector();
+    this.speed = options.speed || 0;
 }
 
-Entity.prototype.translate = function(vector) {
-    this.position.add(vector);
+Entity.prototype.update = function(elapsedTime) {
+    this.position.add(this.direction.clone().multiply(this.speed * elapsedTime / 1000));
     return this;
+};
+
+Entity.prototype.setDirection = function(vector) {
+    this.direction = vector.clone().normalize();
+    return this;
+};
+
+Entity.prototype.setSpeed = function(speed) {
+    this.speed = speed;
 };
 
 Entity.prototype.isColliding = function(entity) {
