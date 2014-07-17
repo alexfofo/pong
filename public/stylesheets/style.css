@@ -6,3 +6,44 @@ body {
 a {
   color: #00B7FF;
 }
+
+#field {
+    background-color: black;
+    width: 1500px;
+    height: 750px;
+    position : absolute;
+}
+
+.player{
+    background-color: white;
+    width: 30px;
+    height: 100px;
+    position : absolute;
+}
+
+#player1{
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+#player2{
+    margin-left: 1420px;
+    margin-top: 250px;
+}
+
+#line{
+    height: 748px;
+    margin-left: 750px;
+    position : absolute;
+    border: 1px dashed white;
+}
+
+#ball{
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    position : absolute;
+    margin-left: 380px;
+    margin-top: 375px;
+    border-radius: 100%;
+}
