@@ -22,18 +22,18 @@ a {
 }
 
 #player1{
-    margin-left: 50px;
-    margin-top: 25px;
+    left: 50px;
+    top: 25px;
 }
 
 #player2{
-    margin-left: 1420px;
-    margin-top: 250px;
+    left: 1420px;
+    top: 250px;
 }
 
 #line{
     height: 748px;
-    margin-left: 750px;
+    left: 750px;
     position : absolute;
     border: 1px dashed white;
 }
@@ -43,7 +43,14 @@ a {
     width: 25px;
     height: 25px;
     position : absolute;
-    margin-left: 380px;
-    margin-top: 375px;
+    left: 380px;
+    top: 375px;
     border-radius: 100%;
+    /*transition : left 0s linear 1s;*/
+    /*
+    transition-property: left;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+    */
 }

@@ -14,7 +14,7 @@ function Entity(type, options) {
 }
 
 Entity.prototype.update = function(elapsedTime) {
-    this.position.add(this.direction.clone().multiply(this.speed * elapsedTime / 1000));
+    this.position.add(this.direction.clone().multiplyScalar(this.speed * elapsedTime / 1000));
     return this;
 };
 
@@ -29,18 +29,18 @@ Entity.prototype.setSpeed = function(speed) {
 
 Entity.prototype.isColliding = function(entity) {
     var myLeft = this.position.x - this.size.x / 2.0,
-        myBottom = this.position.y - this.size.y / 2.0,
+        myBottom = this.position.y + this.size.y / 2.0,
         myRight = this.position.x + this.size.x / 2.0,
-        myTop = this.position.y + this.size.y / 2.0;
+        myTop = this.position.y - this.size.y / 2.0;
 
     var entLeft = entity.position.x - entity.size.x / 2.0,
-        entBottom = entity.position.y - entity.size.y / 2.0,
+        entBottom = entity.position.y + entity.size.y / 2.0,
         entRight = entity.position.x + entity.size.x / 2.0,
-        entTop = entity.position.y + entity.size.y / 2.0;
+        entTop = entity.position.y - entity.size.y / 2.0;
 
     return !(
-        (myBottom > entTop) ||
-        (myTop < entBottom) ||
+        (myBottom < entTop) ||
+        (myTop > entBottom) ||
         (myLeft > entRight) ||
         (myRight < entLeft)
         );
