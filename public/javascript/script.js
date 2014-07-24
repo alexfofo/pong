@@ -14,13 +14,18 @@ function onSuccess(data){
     var p2 = $('#player2');
     var ballX = data.ball.position.x - data.ball.size.x / 2.0;
     var ballY =data.ball.position.y - data.ball.size.y / 2.0;
+    var scoreP1 = data.players[0].score;
+    var scoreP2 = data.players[1].score;
+
     ball.css('top',ballY );
     ball.css('left',ballX );
     p1.css('top', data.leftBar.position.y - data.leftBar.size.y / 2.0);
     p1.css('left', data.leftBar.position.x - data.leftBar.size.x / 2.0);
     p2.css('top', data.rightBar.position.y - data.rightBar.size.y / 2.0);
     p2.css('left', data.rightBar.position.x - data.rightBar.size.x / 2.0);
-    timeout = setTimeout(sendInput,50);
+    $('#scoreP1').html(scoreP1);
+    $('#scoreP2').html(scoreP2);
+    timeout = setTimeout(sendInput, 50);
 }
 
 sendInput = function sendInput(){
@@ -43,22 +48,21 @@ $(document).ready(function() {
     $('#p1').click(function(){
        playerSelection = 0;
         $('#playerSelection').hide();
-        timeout = setTimeout(sendInput,50);
+        timeout = setTimeout(sendInput, 0);
     });
 
     $('#p2').click(function(){
         playerSelection  = 1;
         $('#playerSelection').hide();
-        timeout = setTimeout(sendInput,50);
+        timeout = setTimeout(sendInput, 0);
     });
 
-    /*
     $('#reset').click(function() {
         $.post('/field/reset');
         clearInterval(timeout);
         $('#playerSelection').show();
     });
-    */
+
     $(document).keydown(function(e){
         if(e.keyCode === 38){
             playerAction.top = true;
