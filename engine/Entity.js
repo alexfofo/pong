@@ -11,6 +11,7 @@ function Entity(type, options) {
     this.size = options.size  || new Vector();
     this.direction = options.direction || new Vector();
     this.speed = options.speed || 0;
+    this.hasCollide = false;
 }
 
 Entity.prototype.update = function(elapsedTime) {
@@ -38,12 +39,18 @@ Entity.prototype.isColliding = function(entity) {
         entRight = entity.position.x + entity.size.x / 2.0,
         entTop = entity.position.y - entity.size.y / 2.0;
 
-    return !(
+    var collision = !(
         (myBottom < entTop) ||
         (myTop > entBottom) ||
         (myLeft > entRight) ||
         (myRight < entLeft)
         );
+
+    var ret = (this.hasCollide || entity.hasCollide) ? false : collision;
+    this.hasCollide = collision;
+    entity.hasCollide = collision;
+
+    return ret;
 };
 
 module.exports = Entity;
