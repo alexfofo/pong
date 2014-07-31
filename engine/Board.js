@@ -34,10 +34,8 @@ Board.prototype.reset = function() {
 
 Board.prototype.update = function() {
     var elapsedTime = 50;
-    this.leftBar.direction = new Vector(0, this.players[0].top ? -1 : (this.players[0].bot ? 1 : 0));
-    this.rightBar.direction = new Vector(0, this.players[1].top ? -1 : (this.players[1].bot ? 1 : 0));
-    this.leftBar.update(elapsedTime);
-    this.rightBar.update(elapsedTime);
+    this.leftBar.update(elapsedTime, this.players[0]);
+    this.rightBar.update(elapsedTime, this.players[1]);
     this.ball.update(elapsedTime);
 
     var ballLeft = this.ball.position.x - this.ball.size.x / 2.0,
